@@ -62,7 +62,7 @@ class DevDeckSettings:
                 'settings': {
                     'controls': [
                         {
-                            'name': 'devdeck.controls.clock_control.ClockControl',
+                            'name': 'devdeck.controls.clock_control.GregorianClockControl',
                             'key': 0
                         }
                     ]

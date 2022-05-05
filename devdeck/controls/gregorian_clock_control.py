@@ -5,7 +5,7 @@ from time import sleep
 from devdeck_core.controls.deck_control import DeckControl
 
 
-class ClockControl(DeckControl):
+class GregorianClockControl(DeckControl):
 
     def __init__(self, key_no, **kwargs):
         super().__init__(key_no, **kwargs)
