@@ -4,9 +4,11 @@ from time import sleep
 import math
 from devdeck_core.controls.deck_control import DeckControl
 from isodate import D_ALT_BAS
+from hijri_converter import Hijri, Gregorian
 
-def decimal_time(gregorian_time):
-    t = gregorian_time
+
+def decimal_time(babylonian_time):
+    t = babylonian_time
     t_s = (t.hour * 60 + t.minute) * 60 + t.second
     d_s = 24 * 60 * 60
     ratio = t_s / d_s
@@ -15,6 +17,12 @@ def decimal_time(gregorian_time):
     minutes = math.floor((shifted - hours) * 100)
     seconds = math.floor((((shifted - hours) * 100) - minutes) * 100)
     return "%s:%s:%s" % (hours, str(minutes).zfill(2), str(seconds).zfill(2))
+
+def hijri_date(gregorian_date):
+    d = gregorian_date
+    return Gregorian(d.year, d.month, d.day).to_hijri().isoformat()
+
+print(hijri_date(datetime.now().date()))
 
 class HijriClockControl(DeckControl):
 
@@ -39,7 +47,7 @@ class HijriClockControl(DeckControl):
                         .center_vertically(-100) \
                         .font_size(150)\
                         .end()
-                    r.text(now.strftime("%a, %d %b")) \
+                    r.text(hijri_date(now.date())) \
                         .center_horizontally() \
                         .center_vertically(100) \
                         .font_size(75) \
